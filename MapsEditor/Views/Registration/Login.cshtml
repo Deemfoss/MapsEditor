@@ -1,0 +1,53 @@
+﻿@model MapsEditor.Domain.Models.LoginModel
+
+
+<h2>Login</h2>
+
+
+<div class="panel panel-default" style="height:300px;width:540px">
+    @using (Html.BeginForm("Login","Registration"))
+    {
+        <div class="row" style="padding-top:50px">
+
+
+
+            <div class="col-lg-3">
+
+                @Html.AntiForgeryToken()
+                <div align="center"> <label style="font-size:15px">Login:</label></div> <br />
+                <div align="center" style="padding-top:15px"> <label style="font-size:15px">Password:</label></div>
+               <br />
+
+            </div>
+            <div class="col-lg-6">
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                <div><input class="form-control" type="text" name="Name" /></div><br />
+                <div>  <input class="form-control" type="password" name="Password" /> </div>
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                <br />
+
+               
+
+            </div>
+
+
+
+            @*@Html.EditorForModel(Model.Password)<br />*@
+            @*//<input  type="file"/>*@
+
+
+
+        </div>
+        <div align="center" style="padding-top:10px">
+
+            <input type="submit" class="btn btn-success" value="Enter" />
+        </div>
+    }
+</div>
+<p>
+    @Html.ActionLink("Registration", "Registration", "Registration")
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

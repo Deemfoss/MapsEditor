@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MapsEditor.Domain.Entitties.Map>
+
+<h3>My List</h3>
+
+<p>
+    @Html.ActionLink("Add new entry", "Create", "Home")
+</p>
+<table class="table table-bordered table-condensed table-hover">
+    <tr>
+        <th>
+            @Html.DisplayName("Name")
+        </th>
+
+        <th>
+            @Html.DisplayName("GeoJson data")
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                @Html.ActionLink("View map details", "DetailMap", new { id = item.Id })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("Return", "MyList", "Home")
+</div>

@@ -1,0 +1,27 @@
+﻿@model MapsEditor.Domain.Models.MapModel
+<h3>Create entry </h3>
+
+    @using (Html.BeginForm("Create"))
+    {
+        @Html.Label("Name");<br />
+   @Html.ValidationMessageFor(model=>model.Name, "", new { @class = "text-danger" })
+        @Html.TextBox("Name", null, new { @class = "form-control" });<br />
+
+        @Html.Label("Description");<br />
+        @Html.ValidationMessageFor(model=>model.Description,"", new { @class = "text-danger" })
+        @Html.TextAreaFor(model=>model.Description, new { @class = "form-control", cols = 90, @rows = 20 });<br />
+      
+        <input class="btn btn-default" value="Save" type="submit" />
+
+    }
+
+<br />
+
+<div>
+    @Html.ActionLink("Return", "MyList", "Home")
+</div>
+<div id="map" style="height:400px;width:400px;padding-left:800px" ></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

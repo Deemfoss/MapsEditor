@@ -1,0 +1,42 @@
+﻿@model MapsEditor.Domain.Entitties.Map
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-V-yNn8Zo_Bc6N6Hq2Id8FTevxzenay0&callback=initMap&libraries=drawing">
+</script>
+<div class="well well-lg">
+    <script type="text/javascript">
+    function initMap() {
+        var Minsk = { lat: 53.8978071, lng: 27.5544037 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 3,
+            center: Minsk
+        });
+        var drawingManager = new google.maps.drawing.DrawingManager({
+            drawingMode: google.maps.drawing.OverlayType.MARKER,
+            drawingControl: true,
+            drawingControlOptions: {
+                position: google.maps.ControlPosition.TOP_CENTER,
+                drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
+            },
+
+
+        });
+        drawingManager.setMap(map);
+
+
+        var c = @Html.Raw(ViewBag.GeoJson);
+
+        map.data.addGeoJson(c);
+        
+
+            }
+    </script>
+
+<br />
+<div class="row">
+    <div class="col-lg-6" ><div id="map" style="border:solid;height:500px;width:500px" ></div>
+    <br /> @Html.ActionLink("Return","MyList","Home")</div>
+    <div class="col-lg-4"> <div class="panel panel-default">@Html.Raw(ViewBag.GeoJson);</div></div>
+</div>
+
+</div>
